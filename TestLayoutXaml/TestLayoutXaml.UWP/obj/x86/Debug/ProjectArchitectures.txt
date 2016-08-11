@@ -1,2 +1,0 @@
-C:\Users\Hrafn\documents\visual studio 2015\Projects\TestLayoutXaml\TestLayoutXaml\TestLayoutXaml.UWP\TestLayoutXaml.UWP.csproj;x86
-C:\Users\Hrafn\documents\visual studio 2015\Projects\TestLayoutXaml\TestLayoutXaml\TestLayoutXaml\TestLayoutXaml.csproj;neutral
