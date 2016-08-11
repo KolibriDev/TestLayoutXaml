@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TestLayoutXaml"
+             x:Class="TestLayoutXaml.MainPage">
+
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <DataTemplate x:Key="PersonTemplate">
+        <ViewCell>
+          <ViewCell.ContextActions>
+            <MenuItem Clicked="OnDelete" 
+                      CommandParameter="{Binding .}"
+                      IsDestructive="True" 
+                      Text="Delete" />
+          </ViewCell.ContextActions>
+          <ContentView Padding="16,16,0,0">
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+              </Grid.ColumnDefinitions>
+              <Label Grid.Column="0" Text="{Binding Name}" FontAttributes="Bold"/>
+              <Label Grid.Column="1" Text="{Binding Age}" />
+              <Label Grid.Column="2" Text="{Binding Country}" />
+            </Grid>
+          </ContentView>
+        </ViewCell>
+      </DataTemplate>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  
+  <StackLayout Padding="0,20,0,0">
+    <ListView x:Name="lstView"
+              ItemTemplate="{StaticResource PersonTemplate}">
+    </ListView>
+  </StackLayout>
+  
+</ContentPage>
