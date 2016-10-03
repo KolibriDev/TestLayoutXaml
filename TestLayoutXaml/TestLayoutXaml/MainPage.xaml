@@ -2,38 +2,53 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:TestLayoutXaml"
-             x:Class="TestLayoutXaml.MainPage">
+             x:Class="TestLayoutXaml.MainPage"
+             x:Name="ThisPage">
 
   <ContentPage.Resources>
     <ResourceDictionary>
-      <DataTemplate x:Key="PersonTemplate">
-        <ViewCell>
-          <ViewCell.ContextActions>
-            <MenuItem Clicked="OnDelete" 
-                      CommandParameter="{Binding .}"
-                      IsDestructive="True" 
-                      Text="Delete" />
-          </ViewCell.ContextActions>
-          <ContentView Padding="16,16,0,0">
-            <Grid>
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-              </Grid.ColumnDefinitions>
-              <Label Grid.Column="0" Text="{Binding Name}" FontAttributes="Bold"/>
-              <Label Grid.Column="1" Text="{Binding Age}" />
-              <Label Grid.Column="2" Text="{Binding Country}" />
-            </Grid>
-          </ContentView>
-        </ViewCell>
-      </DataTemplate>
+      <local:MainPageTemplateSelector x:Key="ItemTemplateSelector">
+        <local:MainPageTemplateSelector.SpinnerTemplate>
+          <DataTemplate>
+              <local:ViewCellNoArrow>
+                  <StackLayout Spacing="0">
+                      <ActivityIndicator IsRunning="True" 
+                                         IsVisible="True" />
+                      </StackLayout>
+              </local:ViewCellNoArrow>
+          </DataTemplate>
+        </local:MainPageTemplateSelector.SpinnerTemplate>
+        <local:MainPageTemplateSelector.PersonTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <ViewCell.ContextActions>
+                <MenuItem Clicked="OnDelete" 
+                          CommandParameter="{Binding .}"
+                          IsDestructive="True" 
+                          Text="Delete" />
+              </ViewCell.ContextActions>
+              <ContentView Padding="16,16,0,0">
+                <Grid>
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                  </Grid.ColumnDefinitions>
+                  <Label Grid.Column="0" Text="{Binding Person.Name }" FontAttributes="Bold"/>
+                  <Label Grid.Column="1" Text="{Binding Person.Age }" />
+                  <Label Grid.Column="2" Text="{Binding Person.Country }" />
+                </Grid>
+              </ContentView>
+            </ViewCell>
+          </DataTemplate>
+        </local:MainPageTemplateSelector.PersonTemplate>
+      </local:MainPageTemplateSelector>
     </ResourceDictionary>
   </ContentPage.Resources>
   
   <StackLayout Padding="0,20,0,0">
-    <ListView x:Name="lstView"
-              ItemTemplate="{StaticResource PersonTemplate}">
+    <ListView ItemsSource="{Binding ListItems, Source={x:Reference ThisPage}}"
+              ItemTemplate="{StaticResource ItemTemplateSelector}">
     </ListView>
   </StackLayout>
   
