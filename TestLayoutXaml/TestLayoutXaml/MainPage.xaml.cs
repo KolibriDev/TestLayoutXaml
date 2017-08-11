@@ -17,7 +17,10 @@ namespace TestLayoutXaml
 
         public void OnDelete(object sender, EventArgs e)
         {
-            // Do something
+            var mi = (MenuItem)sender;
+            var thePerson = (Person)mi.CommandParameter;
+
+            this.PersonList.Remove(thePerson);
         }
 
         private void LoadItems()
