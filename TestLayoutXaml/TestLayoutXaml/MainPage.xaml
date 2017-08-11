@@ -30,7 +30,7 @@
   </ContentPage.Resources>
   
   <StackLayout Padding="0,20,0,0">
-    <ListView ItemsSource="{Binding PersonList, Source={x:Reference ThisPage}}"
+    <ListView ItemsSource="{Binding PersonList, Mode=TwoWay}"
               ItemTemplate="{StaticResource PersonTemplate}">
     </ListView>
   </StackLayout>

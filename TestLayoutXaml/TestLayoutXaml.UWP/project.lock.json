@@ -15825,20 +15825,20 @@
     "UAP,Version=v10.0": []
   },
   "packageFolders": {
-    "C:\\Users\\hrafnl\\.nuget\\packages\\": {}
+    "C:\\Users\\Hrafn\\.nuget\\packages\\": {}
   },
   "project": {
     "restore": {
-      "projectUniqueName": "C:\\Users\\hrafnl\\git\\TestLayoutXaml\\TestLayoutXaml\\TestLayoutXaml.UWP\\TestLayoutXaml.UWP.csproj",
+      "projectUniqueName": "C:\\Users\\Hrafn\\git\\TestLayoutXaml\\TestLayoutXaml\\TestLayoutXaml.UWP\\TestLayoutXaml.UWP.csproj",
       "projectName": "TestLayoutXaml.UWP",
-      "projectPath": "C:\\Users\\hrafnl\\git\\TestLayoutXaml\\TestLayoutXaml\\TestLayoutXaml.UWP\\TestLayoutXaml.UWP.csproj",
-      "projectJsonPath": "C:\\Users\\hrafnl\\git\\TestLayoutXaml\\TestLayoutXaml\\TestLayoutXaml.UWP\\project.json",
+      "projectPath": "C:\\Users\\Hrafn\\git\\TestLayoutXaml\\TestLayoutXaml\\TestLayoutXaml.UWP\\TestLayoutXaml.UWP.csproj",
+      "projectJsonPath": "C:\\Users\\Hrafn\\git\\TestLayoutXaml\\TestLayoutXaml\\TestLayoutXaml.UWP\\project.json",
       "projectStyle": "ProjectJson",
       "frameworks": {
         "uap10.0": {
           "projectReferences": {
-            "C:\\Users\\hrafnl\\git\\TestLayoutXaml\\TestLayoutXaml\\TestLayoutXaml\\TestLayoutXaml.csproj": {
-              "projectPath": "C:\\Users\\hrafnl\\git\\TestLayoutXaml\\TestLayoutXaml\\TestLayoutXaml\\TestLayoutXaml.csproj"
+            "C:\\Users\\Hrafn\\git\\TestLayoutXaml\\TestLayoutXaml\\TestLayoutXaml\\TestLayoutXaml.csproj": {
+              "projectPath": "C:\\Users\\Hrafn\\git\\TestLayoutXaml\\TestLayoutXaml\\TestLayoutXaml\\TestLayoutXaml.csproj"
             }
           }
         }
@@ -15846,7 +15846,7 @@
     },
     "dependencies": {
       "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
-      "Xamarin.Forms": "[2.3.5.256-pre6, )"
+      "Xamarin.Forms": "2.3.5.256-pre6"
     },
     "frameworks": {
       "uap10.0": {}
