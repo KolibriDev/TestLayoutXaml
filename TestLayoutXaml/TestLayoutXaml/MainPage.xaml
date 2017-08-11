@@ -31,7 +31,8 @@
   
   <StackLayout Padding="0,20,0,0">
     <ListView ItemsSource="{Binding PersonList}"
-              ItemTemplate="{StaticResource PersonTemplate}">
+              ItemTemplate="{StaticResource PersonTemplate}"
+              CachingStrategy="RecycleElement">
     </ListView>
   </StackLayout>
   
