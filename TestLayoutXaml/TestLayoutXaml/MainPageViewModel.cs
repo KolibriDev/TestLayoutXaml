@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.ComTypes;
 
 namespace TestLayoutXaml
@@ -13,19 +15,21 @@ namespace TestLayoutXaml
             this.LoadItems();
         }
 
-        public List<Person> PersonList { get; set; }
+        public ObservableCollection<Person> PersonList { get; set; }
 
         public void RemovePerson(Person person)
         {
             this.PersonList.Remove(person);
-            var plist = this.PersonList;
-            this.PersonList = null;
-            this.PersonList = plist;
+        }
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         private void LoadItems()
         {
-            this.PersonList = new List<Person>
+            this.PersonList = new ObservableCollection<Person>
             {
                 new Person { Name = "Steve", Age = 21, Country = "USA" },
                 new Person { Name = "Raven", Age = 32, Country = "Iceland" },
