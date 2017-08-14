@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.ComTypes;
 
@@ -16,6 +17,7 @@ namespace TestLayoutXaml
         }
 
         public ObservableCollection<Person> PersonList { get; set; }
+        public IList<ListGroup<string, Person>> PersonGroups { get; set; }
 
         public void RemovePerson(Person person)
         {
@@ -51,6 +53,9 @@ namespace TestLayoutXaml
                 new Person { Name = "Victor", Age = 99, Country = "Switzerland" },
                 new Person { Name = "Robert", Age = 25, Country = "USA" }
             };
+
+            this.PersonGroups = new EnumerableQuery<ListGroup<string, Person>>(
+                this.PersonList.GroupBy(x => x.Country).Select(x => new ListGroup<string, Person>(x))).ToList();;
         }
     }
 }

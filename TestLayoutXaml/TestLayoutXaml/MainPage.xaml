@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:testLayoutXaml="clr-namespace:TestLayoutXaml;assembly=TestLayoutXaml"
              x:Class="TestLayoutXaml.MainPage"
              x:Name="ThisPage">
 
@@ -26,13 +27,27 @@
           </Grid>
         </ViewCell>
       </DataTemplate>
+
+      <DataTemplate x:Key="HeaderTemplate">
+        <testLayoutXaml:HeaderViewCell>
+            <Grid Margin="16,16,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Text="{Binding Key}"
+                       TextColor="Black"/>
+            </Grid>
+        </testLayoutXaml:HeaderViewCell>
+      </DataTemplate>
     </ResourceDictionary>
   </ContentPage.Resources>
   
   <StackLayout Padding="0,20,0,0">
-    <ListView ItemsSource="{Binding PersonList}"
+    <ListView ItemsSource="{Binding PersonGroups}"
               ItemTemplate="{StaticResource PersonTemplate}"
-              CachingStrategy="RecycleElement">
+              CachingStrategy="RecycleElement"
+              IsGroupingEnabled="True"
+              GroupHeaderTemplate="{StaticResource HeaderTemplate}">
     </ListView>
   </StackLayout>
   
