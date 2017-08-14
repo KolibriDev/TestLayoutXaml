@@ -39,16 +39,35 @@
             </Grid>
         </testLayoutXaml:HeaderViewCell>
       </DataTemplate>
-    </ResourceDictionary>
+
+      <ListView x:Key="IosListView"
+                ItemsSource="{Binding PersonGroups}"
+                ItemTemplate="{StaticResource PersonTemplate}"
+                CachingStrategy="RetainElement"
+                IsGroupingEnabled="True"
+                GroupHeaderTemplate="{StaticResource HeaderTemplate}">
+      </ListView>
+
+      <ListView x:Key="DroidListView"
+                ItemsSource="{Binding PersonGroups}"
+                ItemTemplate="{StaticResource PersonTemplate}"
+                CachingStrategy="RecycleElement"
+                IsGroupingEnabled="True"
+                GroupHeaderTemplate="{StaticResource HeaderTemplate}">
+      </ListView>
+
+      <OnPlatform
+        x:Key="ListView"
+        x:TypeArguments="View"
+        Android="{StaticResource DroidListView}"
+        WinPhone="{StaticResource DroidListView}"
+        iOS="{StaticResource IosListView}" />
+        
+     </ResourceDictionary>
   </ContentPage.Resources>
   
   <StackLayout Padding="0,20,0,0">
-    <ListView ItemsSource="{Binding PersonGroups}"
-              ItemTemplate="{StaticResource PersonTemplate}"
-              CachingStrategy="RecycleElement"
-              IsGroupingEnabled="True"
-              GroupHeaderTemplate="{StaticResource HeaderTemplate}">
-    </ListView>
+    <ContentView Content="{StaticResource ListView}" />
   </StackLayout>
   
 </ContentPage>

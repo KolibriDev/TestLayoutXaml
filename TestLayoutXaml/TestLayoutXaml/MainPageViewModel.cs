@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.ComTypes;
 
@@ -14,6 +15,7 @@ namespace TestLayoutXaml
         public MainPageViewModel()
         {
             this.LoadItems();
+            this.PersonList.CollectionChanged += (sender, args) => { this.CreateGroups(); };
         }
 
         public ObservableCollection<Person> PersonList { get; set; }
@@ -27,6 +29,13 @@ namespace TestLayoutXaml
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private void CreateGroups()
+        {
+            this.PersonGroups = null;
+            this.PersonGroups = new EnumerableQuery<ListGroup<string, Person>>(
+                this.PersonList.GroupBy(x => x.Country).Select(x => new ListGroup<string, Person>(x))).ToList(); ;
         }
 
         private void LoadItems()
@@ -54,8 +63,7 @@ namespace TestLayoutXaml
                 new Person { Name = "Robert", Age = 25, Country = "USA" }
             };
 
-            this.PersonGroups = new EnumerableQuery<ListGroup<string, Person>>(
-                this.PersonList.GroupBy(x => x.Country).Select(x => new ListGroup<string, Person>(x))).ToList();;
+            this.CreateGroups();
         }
     }
 }
