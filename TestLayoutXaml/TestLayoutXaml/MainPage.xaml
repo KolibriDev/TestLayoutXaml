@@ -7,53 +7,37 @@
 
   <ContentPage.Resources>
     <ResourceDictionary>
-      <DataTemplate x:Key="PersonTemplate">
-        <ViewCell>
-          <ViewCell.ContextActions>
-            <MenuItem Clicked="OnDelete" 
+            <DataTemplate x:Key="PersonTemplate">
+                <ViewCell>
+                    <ViewCell.ContextActions>
+                        <MenuItem Clicked="OnDelete" 
                       CommandParameter="{Binding .}"
                       IsDestructive="True" 
                       Text="Delete" />
-          </ViewCell.ContextActions>
-          <Grid Margin="16,16,0,0">
-            <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="Auto"/>
-              <ColumnDefinition Width="Auto"/>
-              <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Text="{Binding Name }" FontAttributes="Bold"/>
-            <Label Grid.Column="1" Text="{Binding Age }" />
-            <Label Grid.Column="2" Text="{Binding Country }" />
-          </Grid>
-        </ViewCell>
-      </DataTemplate>
-
-      <DataTemplate x:Key="HeaderTemplate">
-        <testLayoutXaml:HeaderViewCell>
-            <Grid Margin="16,16,0,0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Label Text="{Binding Key}"
-                       TextColor="Black"/>
-            </Grid>
-        </testLayoutXaml:HeaderViewCell>
-      </DataTemplate>
+                    </ViewCell.ContextActions>
+                    <Grid Margin="16,16,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Text="{Binding Name }" FontAttributes="Bold"/>
+                        <Label Grid.Column="1" Text="{Binding Age }" />
+                        <Label Grid.Column="2" Text="{Binding Country }" />
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
 
       <ListView x:Key="IosListView"
-                ItemsSource="{Binding PersonGroups}"
+                ItemsSource="{Binding PersonList}"
                 ItemTemplate="{StaticResource PersonTemplate}"
-                CachingStrategy="RetainElement"
-                IsGroupingEnabled="True"
-                GroupHeaderTemplate="{StaticResource HeaderTemplate}">
+                CachingStrategy="RetainElement">
       </ListView>
 
       <ListView x:Key="DroidListView"
-                ItemsSource="{Binding PersonGroups}"
+                ItemsSource="{Binding PersonList}"
                 ItemTemplate="{StaticResource PersonTemplate}"
-                CachingStrategy="RecycleElement"
-                IsGroupingEnabled="True"
-                GroupHeaderTemplate="{StaticResource HeaderTemplate}">
+                CachingStrategy="RecycleElement">
       </ListView>
 
       <OnPlatform

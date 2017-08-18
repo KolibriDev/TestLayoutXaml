@@ -19,8 +19,7 @@ namespace TestLayoutXaml
         }
 
         public ObservableCollection<Person> PersonList { get; set; }
-        public IList<ListGroup<string, Person>> PersonGroups { get; set; }
-
+        
         public void RemovePerson(Person person)
         {
             this.PersonList.Remove(person);
@@ -33,9 +32,8 @@ namespace TestLayoutXaml
 
         private void CreateGroups()
         {
-            this.PersonGroups = null;
-            this.PersonGroups = new EnumerableQuery<ListGroup<string, Person>>(
-                this.PersonList.GroupBy(x => x.Country).Select(x => new ListGroup<string, Person>(x))).ToList(); ;
+            // No groups
+            ;
         }
 
         private void LoadItems()
@@ -62,8 +60,6 @@ namespace TestLayoutXaml
                 new Person { Name = "Victor", Age = 99, Country = "Switzerland" },
                 new Person { Name = "Robert", Age = 25, Country = "USA" }
             };
-
-            this.CreateGroups();
         }
     }
 }
