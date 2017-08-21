@@ -7,6 +7,12 @@
 
   <ContentPage.Resources>
     <ResourceDictionary>
+            <OnPlatform
+                x:Key="CellMargin"
+                x:TypeArguments="Thickness"
+                Android="16,0,16,0"
+                WinPhone="16,0,16,0"
+                iOS="16,0,0,0" />
             <DataTemplate x:Key="PersonTemplate">
                 <ViewCell>
                     <ViewCell.ContextActions>
@@ -15,43 +21,43 @@
                       IsDestructive="True" 
                       Text="Delete" />
                     </ViewCell.ContextActions>
-                    <Grid Margin="16,16,0,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Text="{Binding Name }" FontAttributes="Bold"/>
-                        <Label Grid.Column="1" Text="{Binding Age }" />
-                        <Label Grid.Column="2" Text="{Binding Country }" />
-                    </Grid>
+                    <ContentView Margin="{StaticResource CellMargin}"
+                              HeightRequest="80">
+                        <Grid
+                            ColumnSpacing="0"
+                            RowSpacing="10"
+                            VerticalOptions="Center">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0"
+                                   Grid.Column="0"
+                                   Text="{Binding Name}"/>
+                            <Label Grid.Row="1"
+                                   Grid.Column="0"
+                                   Text="{Binding Age}" />
+                            <Label Grid.Row="1"
+                                   Grid.Column="1"
+                                   Text="{Binding Country}" />
+                        </Grid>
+                    </ContentView>
                 </ViewCell>
             </DataTemplate>
-
-      <ListView x:Key="IosListView"
-                ItemsSource="{Binding PersonList}"
-                ItemTemplate="{StaticResource PersonTemplate}"
-                CachingStrategy="RetainElement">
-      </ListView>
-
-      <ListView x:Key="DroidListView"
-                ItemsSource="{Binding PersonList}"
-                ItemTemplate="{StaticResource PersonTemplate}"
-                CachingStrategy="RecycleElement">
-      </ListView>
-
-      <OnPlatform
-        x:Key="ListView"
-        x:TypeArguments="View"
-        Android="{StaticResource DroidListView}"
-        WinPhone="{StaticResource DroidListView}"
-        iOS="{StaticResource IosListView}" />
-        
-     </ResourceDictionary>
+        </ResourceDictionary>
   </ContentPage.Resources>
   
-  <StackLayout Padding="0,20,0,0">
-    <ContentView Content="{StaticResource ListView}" />
+  <StackLayout Padding="0,20,0,0"
+               VerticalOptions="StartAndExpand">
+        <ListView 
+                ItemsSource="{Binding PersonList}"
+                ItemTemplate="{StaticResource PersonTemplate}"
+                CachingStrategy="RecycleElement" />
+
   </StackLayout>
   
 </ContentPage>
